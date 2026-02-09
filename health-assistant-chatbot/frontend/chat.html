@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Assistant Chatbot</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="chat-container">
+    <!-- Header -->
+    <div class="chat-header">
+      <div class="header-left">
+        <h2>🏥 Health Assistant</h2>
+        <span class="status">Online</span>
+      </div>
+      <div class="header-right">
+        <button id="clearChatBtn" class="btn-clear">Clear Chat</button>
+      </div>
+    </div>
+
+    <!-- Chat Messages Area -->
+    <div class="chat-messages" id="chatMessages">
+      <div class="message bot-message">
+        <div class="message-content">
+          <p>👋 Hello! I'm your Health Assistant. I can help you with general health information about diseases, symptoms, prevention, food recommendations, and healthy lifestyle tips.</p>
+          <p><strong>Remember:</strong> I provide educational information only and cannot diagnose or prescribe treatments. Always consult a doctor for medical advice.</p>
+        </div>
+      </div>
+    </div>
+
+      <!-- Input Area -->
+      <div class="chat-input-container">
+        <form id="chatForm" class="chat-input-form">
+          <input 
+            type="text" 
+            id="userInput" 
+            class="chat-input" 
+            placeholder="Ask me about health topics..."
+            autocomplete="off"
+            required
+          >
+          <button type="submit" class="btn-send" id="sendBtn">
+            <span>Send</span>
+          </button>
+        </form>
+      </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
