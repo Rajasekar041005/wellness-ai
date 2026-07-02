@@ -6,7 +6,19 @@ const path = require('path');
 const chatRoutes = require('./routes/chat');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const DEFAULT_PORT = Number(process.env.PORT) || 3000;
+
+const handleListenError = (error, port, retriesLeft) => {
+  if (error.code === 'EADDRINUSE' && retriesLeft > 0) {
+    const nextPort = port + 1;
+    console.warn(`Port ${port} is busy, trying ${nextPort} instead.`);
+    startServer(nextPort, retriesLeft - 1);
+    return;
+  }
+
+  console.error('Server failed to start:', error);
+  process.exit(1);
+};
 
 // Middleware
 app.use(cors());
@@ -24,8 +36,22 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend', 'chat.html'));
 });
 
+const startServer = (port, retriesLeft = 10) => {
+  let server;
+
+  try {
+    server = app.listen(port, () => {
+      const activePort = server.address().port;
+      console.log(`🏥 Health Assistant Chatbot server running on http://localhost:${activePort}`);
+      console.log(`📡 API endpoint: http://localhost:${activePort}/api/chat`);
+    });
+  } catch (error) {
+    handleListenError(error, port, retriesLeft);
+    return;
+  }
+
+  server.once('error', (error) => handleListenError(error, port, retriesLeft));
+};
+
 // Start server
-app.listen(PORT, () => {
-  console.log(`🏥 Health Assistant Chatbot server running on http://localhost:${PORT}`);
-  console.log(`📡 API endpoint: http://localhost:${PORT}/api/chat`);
-});
+startServer(DEFAULT_PORT);

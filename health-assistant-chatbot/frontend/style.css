@@ -92,11 +92,190 @@ body {
   background: rgba(255, 255, 255, 0.3);
 }
 
+.tracker-panel {
+  background: linear-gradient(180deg, #f8fbff 0%, #eef6ff 100%);
+  border-bottom: 1px solid var(--border-color);
+  padding: 18px 25px 16px;
+  max-height: 300px;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.tracker-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.tracker-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+  margin-bottom: 6px;
+}
+
+.tracker-panel h3 {
+  font-size: 1.05rem;
+  color: var(--text-dark);
+}
+
+.tracker-status {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--secondary-color);
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.tracker-form {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.tracker-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tracker-field span {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.tracker-field input,
+.tracker-field select,
+.tracker-field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  font: inherit;
+  color: var(--text-dark);
+  background: var(--white);
+}
+
+.tracker-field textarea {
+  resize: vertical;
+  min-height: 88px;
+}
+
+.tracker-notes-field {
+  grid-column: 1 / -1;
+}
+
+.tracker-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-tracker,
+.btn-tracker-secondary,
+.btn-clear {
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-tracker {
+  background: var(--secondary-color);
+  color: var(--white);
+  box-shadow: 0 10px 20px rgba(30, 64, 175, 0.18);
+}
+
+.btn-tracker-secondary,
+.btn-clear {
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--secondary-color);
+}
+
+.btn-tracker:hover,
+.btn-tracker-secondary:hover,
+.btn-clear:hover {
+  transform: translateY(-1px);
+}
+
+.tracker-history {
+  margin-top: 14px;
+}
+
+.tracker-history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.tracker-history-header h4 {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+}
+
+.tracker-history-header span {
+  font-size: 0.82rem;
+  color: var(--text-light);
+}
+
+.tracker-history-list {
+  display: grid;
+  gap: 10px;
+  max-height: 132px;
+  overflow-y: auto;
+}
+
+.tracker-history-empty {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  padding: 10px 0 4px;
+}
+
+.tracker-card {
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  background: rgba(255, 255, 255, 0.76);
+  border-radius: 16px;
+  padding: 12px 14px;
+}
+
+.tracker-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.tracker-card-header strong {
+  color: var(--text-dark);
+}
+
+.tracker-card-meta,
+.tracker-card-notes {
+  font-size: 0.88rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
 .chat-messages {
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 25px;
   background: var(--light-bg);
+  min-height: 200px;
 }
 
 .message {
@@ -150,6 +329,30 @@ body {
 
 .message-content strong {
   color: var(--primary-color);
+}
+
+.response-heading {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 14px 0 8px 0;
+  text-transform: capitalize;
+}
+
+.response-list {
+  margin: 8px 0 12px 20px;
+  padding: 0;
+  list-style-type: disc;
+}
+
+.response-list li {
+  margin-bottom: 6px;
+  line-height: 1.5;
+  color: var(--text-dark);
+}
+
+.response-list li:last-child {
+  margin-bottom: 0;
 }
 
 .typing-indicator {
@@ -260,6 +463,22 @@ body {
   .chat-container {
     height: 100vh;
     border-radius: 0;
+  }
+
+  .tracker-panel {
+    padding: 16px 18px 14px;
+  }
+
+  .tracker-panel-header {
+    flex-direction: column;
+  }
+
+  .tracker-form {
+    grid-template-columns: 1fr;
+  }
+
+  .tracker-status {
+    white-space: normal;
   }
 
   .message-content {

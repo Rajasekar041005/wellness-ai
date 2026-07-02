@@ -125,6 +125,7 @@ You are an AI-based Health Assistant Chatbot created for educational purposes.
 4. **Start chatting:**
    - Ask health-related questions
    - Get educational information about diseases, symptoms, diet, and exercise
+   - Save a daily check-in to track your habits and receive a suggested routine
 
 ## 💻 Development
 
@@ -148,6 +149,8 @@ Send a message to the chatbot and receive a response.
 }
 ```
 
+The API also accepts an optional `trackingData` object for daily check-ins.
+
 **Response:**
 ```json
 {
@@ -164,6 +167,8 @@ Send a message to the chatbot and receive a response.
 - ✅ **Safety First**: Built-in disclaimers and guidelines
 - ✅ **Easy Setup**: Simple installation and configuration
 - ✅ **Login System**: Basic authentication (demo purposes)
+- ✅ **Daily Health Tracker**: Save sleep, water, activity, mood, and notes for each day
+- ✅ **Routine Suggestions**: Turn the latest check-in into a practical routine
 
 ## 📝 Example Questions to Ask
 
