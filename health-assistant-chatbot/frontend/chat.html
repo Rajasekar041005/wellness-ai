@@ -7,25 +7,13 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="chat-container">
-    <!-- Header -->
-    <div class="chat-header">
-      <div class="header-left">
-        <h2>🏥 Health Assistant</h2>
-        <span class="status">Online</span>
-      </div>
-      <div class="header-right">
-        <button id="clearChatBtn" class="btn-clear">Clear Chat</button>
-      </div>
-    </div>
+  <div class="app-layout">
 
-    <!-- Daily Tracker -->
-    <section class="tracker-panel" aria-labelledby="dailyTrackerTitle">
-      <div class="tracker-panel-header">
-        <div>
-          <p class="tracker-eyebrow">Daily check-in</p>
-          <h3 id="dailyTrackerTitle">Track sleep, hydration, movement, and mood</h3>
-        </div>
+    <!-- LEFT SIDEBAR — Daily Check-in -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <p class="tracker-eyebrow">Daily check-in</p>
+        <h3 id="dailyTrackerTitle">Track your health</h3>
         <div class="tracker-status" id="trackerStatus">No entry saved for today</div>
       </div>
 
@@ -36,43 +24,44 @@
         </label>
 
         <label class="tracker-field">
-          <span>Sleep hours</span>
+          <span>😴 Sleep hours</span>
           <input type="number" id="sleepHours" min="0" max="24" step="0.5" placeholder="7.5">
         </label>
 
         <label class="tracker-field">
-          <span>Water cups</span>
+          <span>💧 Water cups</span>
           <input type="number" id="waterCups" min="0" max="20" step="1" placeholder="8">
         </label>
 
         <label class="tracker-field">
-          <span>Activity minutes</span>
+          <span>🏃 Activity (min)</span>
           <input type="number" id="activityMinutes" min="0" max="600" step="5" placeholder="30">
         </label>
 
         <label class="tracker-field">
-          <span>Mood</span>
+          <span>😊 Mood</span>
           <select id="moodLevel">
             <option value="" selected>Choose mood</option>
-            <option value="Great">Great</option>
-            <option value="Good">Good</option>
-            <option value="Okay">Okay</option>
-            <option value="Low">Low</option>
-            <option value="Stressed">Stressed</option>
+            <option value="Great">😄 Great</option>
+            <option value="Good">🙂 Good</option>
+            <option value="Okay">😐 Okay</option>
+            <option value="Low">😔 Low</option>
+            <option value="Stressed">😰 Stressed</option>
           </select>
         </label>
 
-        <label class="tracker-field tracker-notes-field">
-          <span>Notes</span>
-          <textarea id="trackerNotes" rows="2" placeholder="Symptoms, meals, stress, or anything important"></textarea>
+        <label class="tracker-field">
+          <span>📝 Notes</span>
+          <textarea id="trackerNotes" rows="3" placeholder="Symptoms, meals, stress..."></textarea>
         </label>
 
         <div class="tracker-actions">
-          <button type="submit" class="btn-tracker" id="saveTrackerBtn">Save daily update</button>
-          <button type="button" class="btn-tracker-secondary" id="loadTodayBtn">Load today</button>
+          <button type="submit" class="btn-tracker" id="saveTrackerBtn">💾 Save update</button>
+          <button type="button" class="btn-tracker-secondary" id="loadTodayBtn">📅 Load today</button>
         </div>
       </form>
 
+      <!-- Recent History -->
       <div class="tracker-history">
         <div class="tracker-history-header">
           <h4>Recent updates</h4>
@@ -80,25 +69,38 @@
         </div>
         <div id="trackerHistoryList" class="tracker-history-list"></div>
       </div>
-    </section>
+    </aside>
 
-    <!-- Chat Messages Area -->
-    <div class="chat-messages" id="chatMessages">
-      <div class="message bot-message">
-        <div class="message-content">
-          <p>👋 Hello! I'm your Health Assistant. I can help you with general health information about diseases, symptoms, prevention, food recommendations, healthy lifestyle tips, and daily routine suggestions based on your check-ins.</p>
-          <p><strong>Remember:</strong> I provide educational information only and cannot diagnose or prescribe treatments. Always consult a doctor for medical advice.</p>
+    <!-- RIGHT — Chat -->
+    <div class="chat-container">
+      <!-- Header -->
+      <div class="chat-header">
+        <div class="header-left">
+          <h2>🏥 Health Assistant</h2>
+          <span class="status">● Online</span>
+        </div>
+        <div class="header-right">
+          <button id="clearChatBtn" class="btn-clear">Clear Chat</button>
         </div>
       </div>
-    </div>
 
-      <!-- Input Area -->
+      <!-- Messages -->
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot-message">
+          <div class="message-content">
+            <p>👋 Hello! I'm your Health Assistant. I can help you with general health information about diseases, symptoms, prevention, food recommendations, healthy lifestyle tips, and daily routine suggestions based on your check-ins.</p>
+            <p><strong>Remember:</strong> I provide educational information only and cannot diagnose or prescribe treatments. Always consult a doctor for medical advice.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input -->
       <div class="chat-input-container">
         <form id="chatForm" class="chat-input-form">
-          <input 
-            type="text" 
-            id="userInput" 
-            class="chat-input" 
+          <input
+            type="text"
+            id="userInput"
+            class="chat-input"
             placeholder="Ask me about health topics..."
             autocomplete="off"
             required
@@ -108,6 +110,8 @@
           </button>
         </form>
       </div>
+    </div>
+
   </div>
 
   <script src="script.js"></script>

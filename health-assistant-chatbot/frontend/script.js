@@ -45,8 +45,10 @@ const ENGAGEMENT_QUESTIONS = [
   'Should I share one easy food suggestion for better daily energy?'
 ];
 
-// Use a relative endpoint so the frontend follows whatever port the server starts on.
-const API_URL = '/api/chat';
+// Use dynamic URL fallback to Flask backend on port 5000 if hosted on a different port (e.g. 3000) or opened via file://
+const API_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port === '5000'
+  ? '/api/chat'
+  : 'http://127.0.0.1:5000/api/chat';
 
 initializeDailyTracker();
 initializeInactivityReminder();
@@ -71,7 +73,10 @@ chatForm?.addEventListener('submit', async (e) => {
     }
   } catch (error) {
     console.error('Error:', error);
-    addMessage('Sorry, I could not connect to the server. Please make sure the backend is running.', 'bot');
+    const msg = error.message && error.message !== 'Failed to fetch'
+      ? `⚠️ Error: ${error.message}`
+      : 'Sorry, I could not connect to the server. Please make sure the backend is running.';
+    addMessage(msg, 'bot');
   }
 
   // Scroll to bottom
